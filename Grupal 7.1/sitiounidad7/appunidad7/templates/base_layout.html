@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te lo Vendo</title>
+    <!--Link a mi template principal-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <!--codigo de bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.0/united/bootstrap.min.css" integrity="sha512-CsydUhzfdKBDWCZEoTfJ+qeRffIdiTMq4B7monIKdR25O7YsFxrk+oaGiiRChKc6wXnjVoHoKEHEDpgcj1nKeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
+            <span class="fs-4">Te lo Vendo</span>
+          </a>
+          {# los nuevos usuarios solo pueden ver home, registrar, login #}
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{%url 'home'%}" class="nav-link">Home</a></li>
+            {% if  user.is_authenticated %}{# solo los usuarios autenticados pueden ver esta secion#}
+              <li class="nav-item"><a href="{%url 'welcome'%}" class="nav-link">Welcome</a></li>  
+              <li class="nav-item"><a href="{%url 'logout'%}" class="nav-link">Logout</a></li>
+            {% else %}
+              <li class="nav-item"><a href="{%url 'signup'%}" class="nav-link">Registrar</a></li>
+              <li class="nav-item"><a href="{%url 'signin'%}" class="nav-link">Login</a></li>
+            {% endif %}
+          </ul>
+        </header>
+      </div>
+      <main>
+        {% block content %}
+        {% endblock %}
+      </main>
+      <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+        <p>"Tienda Online" escrita en Django By Grupo6</p>
+        <p class="mb-0">
+          <a href="#">Back to top</a>
+        </p>
+      </footer>
+    
+</body>
+</html>
