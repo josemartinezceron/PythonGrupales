@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+  <h1>Lista de Pedidos</h1>
+  <a href="{% url 'agregar_pedido' %}" class="btn-agregar-pedido">Tomar un Pedido</a>
+  <ul>
+      {% for pedido in pedidos %}
+          <li>
+              Pedido ID: {{ pedido.id }} - Cliente: {{ pedido.cliente }} - Producto: {{ pedido.producto }} - Cantidad: {{ pedido.cantidad }}
+              <a href="{% url 'ver_pedido' pedido.id %}" class="btn-visualizar-pedido">Visualizar</a>
+              <a href="{% url 'eliminar_pedido' pedido.id %}" class="btn-eliminar-pedido">Eliminar</a>
+          </li>
+      {% endfor %}
+  </ul>
+{% endblock %}

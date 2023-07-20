@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+    <h1>Agregar Producto al Pedido</h1>
+    <form method="POST" action="{% url 'agregar_pedido_producto' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p>Pedido ID: {{ form.pedido_id }}</p>
+        <label for="producto">Producto:</label>
+        <select name="producto" id="producto">
+            {% for producto in productos_disponibles %}
+                <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" name="cantidad" id="cantidad">
+        <br><br>
+        <input type="submit" value="Agregar Producto">
+    </form>
+{% endblock %}

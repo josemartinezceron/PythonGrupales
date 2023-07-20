@@ -1,0 +1,8 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+    <h1>Visualizar Pedido</h1>
+    <p>Pedido ID: {{ pedido.id }}</p>
+    <p>Cliente: {{ pedido.cliente }}</p>
+    <p>Producto: {{ pedido.producto }}</p>
+    <p>Cantidad: {{ pedido.cantidad }}</p>
+{% endblock %}
